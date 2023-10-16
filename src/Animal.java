@@ -4,16 +4,17 @@ public class Animal {
     private String nome;
     private int idade;
     private int vida;
-    private int vidaMaxima; // Vida máxima do animal
-    private int x; // Posição X na matriz
-    private int y; // Posição Y na matriz
-    private String sexo; // Atributo para o sexo (masculino ou feminino)
+    private int vidaMaxima;
+    private int x;
+    private int y;
+    private String sexo;
 
-    public Animal(String nome, int idade, int vidaMaxima) {
+    public Animal(String nome, int idade, int vidaMaxima, String sexo) {
         this.nome = nome;
         this.idade = idade;
-        this.vida = vidaMaxima; // Inicializa a vida com o valor máximo
+        this.vida = vidaMaxima;
         this.vidaMaxima = vidaMaxima;
+        this.sexo = sexo;
 
         // Gere aleatoriamente o sexo
         Random random = new Random();
@@ -91,5 +92,9 @@ public class Animal {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    protected void setVida(int novaVida) {
+        vida = novaVida;
     }
 }
