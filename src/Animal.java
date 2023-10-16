@@ -7,28 +7,37 @@ public class Animal {
     private int vidaMaxima; // Vida máxima do animal
     private int x; // Posição X na matriz
     private int y; // Posição Y na matriz
+    private String sexo; // Atributo para o sexo (masculino ou feminino)
 
     public Animal(String nome, int idade, int vidaMaxima) {
         this.nome = nome;
         this.idade = idade;
         this.vida = vidaMaxima; // Inicializa a vida com o valor máximo
         this.vidaMaxima = vidaMaxima;
+
+        // Gere aleatoriamente o sexo
+        Random random = new Random();
+        int sexoAleatorio = random.nextInt(2); // 0 ou 1
+        if (sexoAleatorio == 0) {
+            this.sexo = "masculino";
+        } else {
+            this.sexo = "feminino";
+        }
     }
 
     public void moverAleatoriamente(Terreno[][] grade) {
-        idade++; // Aumenta a idade do animal a cada movimento
-        vida--;  // Diminui 1 ponto de vida a cada movimento
+        idade++;
+        vida--;
 
         if (vida <= 0 || idade >= 30) {
-            // Remove o animal da matriz se a vida chegar a 0 ou a idade atingir 30
-            grade[y][x] = null;
+            grade[getY()][getX()] = null;
         }
 
         Random random = new Random();
-        int direction = random.nextInt(4); // 0: Norte, 1: Sul, 2: Leste, 3: Oeste
+        int direction = random.nextInt(4);
 
-        int newX = x;
-        int newY = y;
+        int newX = getX();
+        int newY = getY();
 
         if (direction == 0 && newY > 0) {
             newY--;
@@ -41,7 +50,6 @@ public class Animal {
         }
 
         if (grade[newY][newX] == null) {
-            // Move o animal para a nova posição
             grade[y][x] = null;
             grade[newY][newX] = this;
             x = newX;
@@ -49,7 +57,14 @@ public class Animal {
         }
     }
 
-    // Getters e Setters para x, y, idade, vida e vidaMaxima
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public int getX() {
         return x;
     }
