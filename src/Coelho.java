@@ -21,21 +21,23 @@ public class Coelho extends Animal {
     public void moverAleatoriamente(Terreno[][] grade) {
         int idadeAtual = getIdade();
         int vidaAtual = getVida();
-
+    
         idadeAtual++;
         vidaAtual--;
-
+    
         if (vidaAtual <= 0 || idadeAtual >= 30) {
-            getTerrenoAtual().setElemento(null);
+            if (getTerrenoAtual() != null) {
+                getTerrenoAtual().setElemento(null);
+            }
             return;
         }
-
+    
         Random random = new Random();
         int direction = random.nextInt(4);
-
+    
         int newX = getX();
         int newY = getY();
-
+    
         if (direction == 0 && newY > 0) {
             newY--;
         } else if (direction == 1 && newY < grade.length - 1) {
@@ -45,16 +47,19 @@ public class Coelho extends Animal {
         } else if (direction == 3 && newX > 0) {
             newX--;
         }
-
+    
         Terreno novoTerreno = grade[newY][newX];
         if (novoTerreno.getElemento() == null) {
-            getTerrenoAtual().setElemento(null);
+            if (getTerrenoAtual() != null) {
+                getTerrenoAtual().setElemento(null);
+            }
             novoTerreno.setElemento(this);
             setX(newX);
             setY(newY);
             setTerrenoAtual(novoTerreno);
         }
     }
+    
 
     public void comer(Terreno[][] grade) {
         int x = getX();
@@ -67,16 +72,58 @@ public class Coelho extends Animal {
             }
         }
 
-    public Coelho reproduzir(Coelho parceiro) {
-        if (this.getSexo().equals("feminino") && parceiro.getSexo().equals("masculino")) {
-            if (this.getIdade() >= 2 && parceiro.getIdade() >= 2) {
-                setVida(getVida() - 10);
-                parceiro.setVida(parceiro.getVida() - 10);
-                return new Coelho("Filhote", 0);
+        public Coelho reproduzir(Terreno[][] grade) {
+            int x = getX();
+            int y = getY();
+        
+            int newX = x;
+            int newY = y;
+        
+            // Verifica as células vizinhas
+            if (x < grade[0].length - 1 && grade[y][x + 1].getElemento() instanceof Coelho) {
+                Coelho parceiro = (Coelho) grade[y][x + 1].getElemento();
+                if (!getSexo().equals(parceiro.getSexo())) {
+                    // Coelhos de sexos opostos estão na célula vizinha
+                    setVida(getVida() - 10);
+                    parceiro.setVida(parceiro.getVida() - 10);
+        
+                    // Cria um filhote
+                    return new Coelho("Filhote", 0);
+                }
+            } else if (x > 0 && grade[y][x - 1].getElemento() instanceof Coelho) {
+                Coelho parceiro = (Coelho) grade[y][x - 1].getElemento();
+                if (!getSexo().equals(parceiro.getSexo())) {
+                    // Coelhos de sexos opostos estão na célula vizinha
+                    setVida(getVida() - 10);
+                    parceiro.setVida(parceiro.getVida() - 10);
+        
+                    // Cria um filhote
+                    return new Coelho("Filhote", 0);
+                }
+            } else if (y < grade.length - 1 && grade[y + 1][x].getElemento() instanceof Coelho) {
+                Coelho parceiro = (Coelho) grade[y + 1][x].getElemento();
+                if (!getSexo().equals(parceiro.getSexo())) {
+                    // Coelhos de sexos opostos estão na célula vizinha
+                    setVida(getVida() - 10);
+                    parceiro.setVida(parceiro.getVida() - 10);
+        
+                    // Cria um filhote
+                    return new Coelho("Filhote", 0);
+                }
+            } else if (y > 0 && grade[y - 1][x].getElemento() instanceof Coelho) {
+                Coelho parceiro = (Coelho) grade[y - 1][x].getElemento();
+                if (!getSexo().equals(parceiro.getSexo())) {
+                    // Coelhos de sexos opostos estão na célula vizinha
+                    setVida(getVida() - 10);
+                    parceiro.setVida(parceiro.getVida() - 10);
+        
+                    // Cria um filhote
+                    return new Coelho("Filhote", 0);
+                }
             }
+        
+            return null;
         }
-        return null;
-    }
 
     public void morrer() {
         setVida(0); // Define a vida do Coelho como zero para indicar que ele está morto

@@ -7,24 +7,25 @@ public class Lobo extends Animal {
 
     @Override
     public void moverAleatoriamente(Terreno[][] grade) {
-        int idadeAtual = getIdade(); // Obtém a idade atual
-        int vidaAtual = getVida();   // Obtém a vida atual
-
+        int idadeAtual = getIdade();
+        int vidaAtual = getVida();
+    
         idadeAtual++;
         vidaAtual--;
-
-        // Verifica se a vida chegou a 0 ou a idade ultrapassou 30
+    
         if (vidaAtual <= 0 || idadeAtual >= 30) {
-            getTerrenoAtual().setElemento(null);
+            if (getTerrenoAtual() != null) {
+                getTerrenoAtual().setElemento(null);
+            }
             return;
         }
-
+    
         Random random = new Random();
         int direction = random.nextInt(4);
-
+    
         int newX = getX();
         int newY = getY();
-
+    
         if (direction == 0 && newY > 0) {
             newY--;
         } else if (direction == 1 && newY < grade.length - 1) {
@@ -34,19 +35,25 @@ public class Lobo extends Animal {
         } else if (direction == 3 && newX > 0) {
             newX--;
         }
-
-        Terreno novoTerreno = grade[newY][newX];
-        if (novoTerreno.getElemento() == null) {
-            getTerrenoAtual().setElemento(null);
-            novoTerreno.setElemento(this);
-            setX(newX);
-            setY(newY);
-            setTerrenoAtual(novoTerreno);
-        } else if (novoTerreno.getElemento() instanceof Coelho) {
-            Coelho coelho = (Coelho) novoTerreno.getElemento();
-            consumirCoelho(coelho);
+    
+        if (newX >= 0 && newX < grade[0].length && newY >= 0 && newY < grade.length) {
+            Terreno novoTerreno = grade[newY][newX];
+            if (novoTerreno.getElemento() == null) {
+                if (getTerrenoAtual() != null) {
+                    getTerrenoAtual().setElemento(null);
+                }
+                novoTerreno.setElemento(this);
+                setX(newX);
+                setY(newY);
+                setTerrenoAtual(novoTerreno);
+            }
+        } else {
+            if (getTerrenoAtual() != null) {
+                getTerrenoAtual().setElemento(null);
+            }
         }
     }
+    
 
     // Função para consumir um Coelho e ganhar 20 de vida
     private void consumirCoelho(Coelho coelho) {
