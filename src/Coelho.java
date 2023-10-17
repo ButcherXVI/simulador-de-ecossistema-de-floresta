@@ -26,7 +26,7 @@ public class Coelho extends Animal {
         vidaAtual--;
 
         if (vidaAtual <= 0 || idadeAtual >= 30) {
-            grade[getY()][getX()] = null;
+            getTerrenoAtual().setElemento(null);
             return;
         }
 
@@ -46,11 +46,13 @@ public class Coelho extends Animal {
             newX--;
         }
 
-        if (grade[newY][newX] == null) {
-            grade[getY()][getX()] = null;
-            grade[newY][newX] = this;
+        Terreno novoTerreno = grade[newY][newX];
+        if (novoTerreno.getElemento() == null) {
+            getTerrenoAtual().setElemento(null);
+            novoTerreno.setElemento(this);
             setX(newX);
             setY(newY);
+            setTerrenoAtual(novoTerreno);
         }
     }
 
@@ -58,11 +60,12 @@ public class Coelho extends Animal {
         int x = getX();
         int y = getY();
 
-        if (x < grade[0].length - 1 && grade[y][x + 1] instanceof Planta) {
-            grade[y][x + 1] = null;
+        if (x < grade[0].length - 1) {
+            Terreno terrenoAdjacente = grade[y][x + 1];
+            terrenoAdjacente.setElemento(null);
             setVida(getVida() + 10);
+            }
         }
-    }
 
     public Coelho reproduzir(Coelho parceiro) {
         if (this.getSexo().equals("feminino") && parceiro.getSexo().equals("masculino")) {

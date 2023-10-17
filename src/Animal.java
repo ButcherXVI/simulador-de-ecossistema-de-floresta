@@ -8,6 +8,7 @@ public class Animal {
     private int x;
     private int y;
     private String sexo;
+    private Terreno terrenoAtual;
 
     public Animal(String nome, int idade, int vidaMaxima, String sexo) {
         this.nome = nome;
@@ -15,15 +16,6 @@ public class Animal {
         this.vida = vidaMaxima;
         this.vidaMaxima = vidaMaxima;
         this.sexo = sexo;
-
-        // Gere aleatoriamente o sexo
-        Random random = new Random();
-        int sexoAleatorio = random.nextInt(2); // 0 ou 1
-        if (sexoAleatorio == 0) {
-            this.sexo = "masculino";
-        } else {
-            this.sexo = "feminino";
-        }
     }
 
     public void moverAleatoriamente(Terreno[][] grade) {
@@ -31,14 +23,14 @@ public class Animal {
         vida--;
 
         if (vida <= 0 || idade >= 30) {
-            grade[getY()][getX()] = null;
+            terrenoAtual.setElemento(null);
         }
 
         Random random = new Random();
         int direction = random.nextInt(4);
 
-        int newX = getX();
-        int newY = getY();
+        int newX = x;
+        int newY = y;
 
         if (direction == 0 && newY > 0) {
             newY--;
@@ -50,12 +42,24 @@ public class Animal {
             newX--;
         }
 
-        if (grade[newY][newX] == null) {
-            grade[y][x] = null;
-            grade[newY][newX] = this;
+        Terreno novoTerreno = grade[newY][newX];
+        if (novoTerreno.getElemento() == null) {
+            terrenoAtual.setElemento(null);
+            terrenoAtual = novoTerreno;
+            terrenoAtual.setElemento(this);
             x = newX;
             y = newY;
         }
+    }
+
+    // Resto do código...
+
+    public void setTerrenoAtual(Terreno terreno) {
+        this.terrenoAtual = terreno;
+    }
+    
+    public Terreno getTerrenoAtual() {
+        return terrenoAtual;
     }
 
     public String getSexo() {

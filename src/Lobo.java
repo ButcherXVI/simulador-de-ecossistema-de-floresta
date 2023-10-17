@@ -15,7 +15,7 @@ public class Lobo extends Animal {
 
         // Verifica se a vida chegou a 0 ou a idade ultrapassou 30
         if (vidaAtual <= 0 || idadeAtual >= 30) {
-            grade[getY()][getX()] = null;
+            getTerrenoAtual().setElemento(null);
             return;
         }
 
@@ -35,13 +35,15 @@ public class Lobo extends Animal {
             newX--;
         }
 
-        if (grade[newY][newX] == null) {
-            grade[getY()][getX()] = null;
-            grade[newY][newX] = this;
+        Terreno novoTerreno = grade[newY][newX];
+        if (novoTerreno.getElemento() == null) {
+            getTerrenoAtual().setElemento(null);
+            novoTerreno.setElemento(this);
             setX(newX);
             setY(newY);
-        } else if (grade[newY][newX] instanceof Coelho) {
-            Coelho coelho = (Coelho) grade[newY][newX];
+            setTerrenoAtual(novoTerreno);
+        } else if (novoTerreno.getElemento() instanceof Coelho) {
+            Coelho coelho = (Coelho) novoTerreno.getElemento();
             consumirCoelho(coelho);
         }
     }
@@ -64,6 +66,4 @@ public class Lobo extends Animal {
         }
         return null; // Não houve reprodução
     }
-
-    // Restante do código da classe Lobo
 }

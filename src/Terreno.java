@@ -1,13 +1,21 @@
-// Classe Terreno
 public class Terreno {
     private String tipo;
+    private Animal elemento;
 
     public Terreno(String tipo) {
         this.tipo = tipo;
+        this.elemento = null; // Inicialmente, não há nenhum elemento no terreno
     }
 
-    public void chover() {
-        // Simulação de chuva no terreno
-        System.out.println("Chuva caindo sobre o terreno " + tipo);
+    public String getTipo() {
+        return tipo;
+    }
+
+    public Animal getElemento() {
+        return elemento;
+    }
+
+    public void setElemento(Animal animal) {
+        this.elemento = animal;
     }
 }
