@@ -58,7 +58,7 @@ public class Coelho extends Animal {
         int x = getX();
         int y = getY();
 
-        if (x < grade[0].length - 1 && grade[y][x + 1] instanceof TerrenoComida) {
+        if (x < grade[0].length - 1 && grade[y][x + 1] instanceof Planta) {
             grade[y][x + 1] = null;
             setVida(getVida() + 10);
         }
