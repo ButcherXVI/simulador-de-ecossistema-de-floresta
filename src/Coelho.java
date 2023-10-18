@@ -5,10 +5,9 @@ public class Coelho extends Animal {
         super(nome, idade, 40, gerarSexoAleatorio());
     }
 
-    // Método para gerar sexo aleatório
     private static String gerarSexoAleatorio() {
         Random random = new Random();
-        int numeroAleatorio = random.nextInt(2); // Gera 0 ou 1 aleatoriamente
+        int numeroAleatorio = random.nextInt(2); 
 
         if (numeroAleatorio == 0) {
             return "masculino";
@@ -79,45 +78,32 @@ public class Coelho extends Animal {
             int newX = x;
             int newY = y;
         
-            // Verifica as células vizinhas
             if (x < grade[0].length - 1 && grade[y][x + 1].getElemento() instanceof Coelho) {
                 Coelho parceiro = (Coelho) grade[y][x + 1].getElemento();
                 if (!getSexo().equals(parceiro.getSexo())) {
-                    // Coelhos de sexos opostos estão na célula vizinha
                     setVida(getVida() - 10);
                     parceiro.setVida(parceiro.getVida() - 10);
-        
-                    // Cria um filhote
                     return new Coelho("Filhote", 0);
                 }
             } else if (x > 0 && grade[y][x - 1].getElemento() instanceof Coelho) {
                 Coelho parceiro = (Coelho) grade[y][x - 1].getElemento();
                 if (!getSexo().equals(parceiro.getSexo())) {
-                    // Coelhos de sexos opostos estão na célula vizinha
                     setVida(getVida() - 10);
                     parceiro.setVida(parceiro.getVida() - 10);
-        
-                    // Cria um filhote
                     return new Coelho("Filhote", 0);
                 }
             } else if (y < grade.length - 1 && grade[y + 1][x].getElemento() instanceof Coelho) {
                 Coelho parceiro = (Coelho) grade[y + 1][x].getElemento();
                 if (!getSexo().equals(parceiro.getSexo())) {
-                    // Coelhos de sexos opostos estão na célula vizinha
                     setVida(getVida() - 10);
                     parceiro.setVida(parceiro.getVida() - 10);
-        
-                    // Cria um filhote
                     return new Coelho("Filhote", 0);
                 }
             } else if (y > 0 && grade[y - 1][x].getElemento() instanceof Coelho) {
                 Coelho parceiro = (Coelho) grade[y - 1][x].getElemento();
                 if (!getSexo().equals(parceiro.getSexo())) {
-                    // Coelhos de sexos opostos estão na célula vizinha
                     setVida(getVida() - 10);
                     parceiro.setVida(parceiro.getVida() - 10);
-        
-                    // Cria um filhote
                     return new Coelho("Filhote", 0);
                 }
             }
@@ -126,6 +112,6 @@ public class Coelho extends Animal {
         }
 
     public void morrer() {
-        setVida(0); // Define a vida do Coelho como zero para indicar que ele está morto
+        setVida(0);
     }
 }

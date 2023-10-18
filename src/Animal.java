@@ -52,8 +52,6 @@ public class Animal {
         }
     }
 
-    // Resto do código...
-
     public void setTerrenoAtual(Terreno terreno) {
         this.terrenoAtual = terreno;
     }

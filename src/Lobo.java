@@ -54,23 +54,19 @@ public class Lobo extends Animal {
         }
     }
     
-
-    // Função para consumir um Coelho e ganhar 20 de vida
     private void consumirCoelho(Coelho coelho) {
         coelho.morrer();
         setVida(getVida() + 20);
     }
 
-    // Função para reproduzir com outro Lobo de sexo oposto
     public Lobo reproduzir(Lobo parceiro) {
         if (this.getSexo().equals("masculino") && parceiro.getSexo().equals("feminino")) {
-            // Somente Lobos de sexos opostos podem se reproduzir
             if (this.getIdade() >= 2 && parceiro.getIdade() >= 2) {
                 setVida(getVida() - 10);
                 parceiro.setVida(parceiro.getVida() - 10);
                 return new Lobo("Filhote", 0, "aleatório");
             }
         }
-        return null; // Não houve reprodução
+        return null;
     }
 }

@@ -1,18 +1,24 @@
-## Getting Started
+## Projeto: Ecossistema de Floresta
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Minhas informações:
 
-## Folder Structure
+- Nome: Lucas Azevedo da Rocha Cortez
+- Matrícula: 01607883
 
-The workspace contains two folders by default, where:
+## Descrição
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+O projeto "Ecossistema de Floresta" é um simulador de ecossistema desenvolvido em Java. Ele incorpora os principais conceitos de programação orientada a objetos para criar um ambiente virtual onde diferentes elementos da floresta interagem entre si. O objetivo é demonstrar de forma prática e educativa os princípios da programação orientada a objetos.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Conceitos Aplicados
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+O simulador de ecossistema de floresta envolve a aplicação dos seguintes conceitos:
 
-## Dependency Management
+- `Encapsulamento`: Os atributos das classes são definidos com os modificadores de acesso apropriados (público, privado, protegido) para garantir um acesso controlado e seguro aos dados.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- `Herança`: São criadas hierarquias de classes para representar grupos de seres vivos, como mamíferos, aves, répteis, árvores, arbustos, etc. A herança é usada para reutilizar características comuns e especializar comportamentos específicos de cada grupo.
+
+- `Polimorfismo`: São implementados métodos polimórficos que permitem que diferentes instâncias das classes compartilhem o mesmo nome de método, mas executem comportamentos diferentes. Por exemplo, o método "movimentar()" pode ter implementações diferentes para um lobo e um coelho.
+
+- `Associação`: São estabelecidas relações entre as classes para modelar a interação entre predadores e presas, polinização entre plantas e animais, entre outros. São utilizadas associações como agregação e composição para representar essas relações.
+
+- `Métodos e Comportamentos`: Métodos nas classes representam comportamentos específicos, como "comer()", "reproduzir()", "crescer()", entre outros. O projeto demonstra como diferentes entidades da floresta interagem entre si por meio desses métodos.

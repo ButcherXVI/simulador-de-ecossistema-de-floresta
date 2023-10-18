@@ -13,18 +13,16 @@ public class EcossistemaFloresta {
         this.numPlantas = numPlantas;
         inicializarGrid();
         exibirGrid();
-        simularEcossistema(10); // Simula o ecossistema por 10 passos de tempo
+        simularEcossistema(10); 
     }
 
     private void inicializarGrid() {
-        // Inicialize o grid com terrenos vazios (ou outros terrenos, se necessário)
         for (int row = 0; row < grade.length; row++) {
             for (int col = 0; col < grade[0].length; col++) {
                 grade[row][col] = new Terreno("Vazio");
             }
         }
 
-        // Adicione plantas aleatoriamente ao grid
         Random random = new Random();
         for (int i = 0; i < numPlantas; i++) {
             int x = random.nextInt(grade[0].length);
@@ -35,7 +33,6 @@ public class EcossistemaFloresta {
             }
         }
 
-        // Adicione lobos e coelhos aleatoriamente ao grid
         for (int i = 0; i < numLobos; i++) {
             int x = random.nextInt(grade[0].length);
             int y = random.nextInt(grade.length);
@@ -67,10 +64,9 @@ public class EcossistemaFloresta {
         }
     }
 
-    // Método para gerar sexo aleatório para coelhos
     private static String gerarSexoAleatorio() {
         Random random = new Random();
-        int numeroAleatorio = random.nextInt(2); // Gera 0 ou 1 aleatoriamente
+        int numeroAleatorio = random.nextInt(2); 
 
         if (numeroAleatorio == 0) {
             return "masculino";
@@ -112,7 +108,6 @@ public class EcossistemaFloresta {
     
 
     public static void main(String[] args) {
-        // Tamanho do grid, número inicial de lobos, coelhos e plantas
         int numRows = 10;
         int numCols = 10;
         int numLobos = 5;

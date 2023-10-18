@@ -15,7 +15,6 @@ public class Planta extends Terreno {
     }
 
     public void atualizarEcossistema(Terreno[][] grade) {
-        // Verifica se a planta pode aparecer e atualiza o tempo para aparecer
         if (!podeAparecer) {
             tempoParaAparecer++;
             if (tempoParaAparecer >= 12) {
@@ -24,11 +23,8 @@ public class Planta extends Terreno {
             }
         }
 
-        // Gera um número aleatório entre 0 e 100
         Random random = new Random();
         int chance = random.nextInt(101);
-
-        // Se a chance é menor ou igual a 50, cria uma planta aleatoriamente no grid
         if (chance <= 50) {
             Random randomPosition = new Random();
             int x = randomPosition.nextInt(grade[0].length);
@@ -41,6 +37,5 @@ public class Planta extends Terreno {
     }
 
     public void consumirPlanta() {
-        // Método vazio, pois a planta foi consumida por completo
     }
 }

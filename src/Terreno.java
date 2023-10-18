@@ -4,7 +4,7 @@ public class Terreno {
 
     public Terreno(String tipo) {
         this.tipo = tipo;
-        this.elemento = null; // Inicialmente, não há nenhum elemento no terreno
+        this.elemento = null;
     }
 
     public String getTipo() {
